@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DealHound — Real Black Friday Deals, Checked 27 Nov 2026</title>
+<meta name="description" content="49 real Black Friday PC game deals, each price-checked on 27 November 2026 across six stores, with an honest verdict on whether each discount is really a deal.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="brand">
+    <div class="logo" aria-hidden="true">DH</div>
+    <div>
+      <h1>DEALHOUND</h1>
+      <p class="tagline">Sniff out the real Black Friday deals. Every price checked, every discount judged.</p>
+    </div>
+  </div>
+  <dl class="stats" id="stats">
+    <div><dt>Real deals</dt><dd id="stat-deals">49</dd></div>
+    <div><dt>Average saving</dt><dd id="stat-avg">88.9%</dd></div>
+    <div><dt>Total you save</dt><dd id="stat-saved">$2,469.45</dd></div>
+    <div><dt>All-time lows</dt><dd id="stat-atl">17</dd></div>
+    <div><dt>Cheapest ever beaten</dt><dd id="stat-stores">6 stores</dd></div>
+  </dl>
+  <p class="checked-line">Prices checked <strong>27 Nov 2026, 13:45 WIB</strong> at CheapShark and cross-checked at the Steam store. Prices move fast — always confirm at the store before you buy.</p>
+</header>
+
+<main>
+  <section class="controls" aria-label="Find deals">
+    <div class="control-row">
+      <label class="search-box">
+        <span class="control-label">Search</span>
+        <input id="q" type="search" placeholder="Search a game, e.g. Witcher, Batman, Lego…" autocomplete="off">
+      </label>
+      <label>
+        <span class="control-label">Category</span>
+        <select id="f-cat"></select>
+      </label>
+      <label>
+        <span class="control-label">Store</span>
+        <select id="f-store"></select>
+      </label>
+      <label>
+        <span class="control-label">Minimum discount</span>
+        <select id="f-off">
+          <option value="0">Any discount</option>
+          <option value="50">50% off or more</option>
+          <option value="75">75% off or more</option>
+          <option value="90">90% off or more</option>
+        </select>
+      </label>
+      <label>
+        <span class="control-label">Sort by</span>
+        <select id="f-sort">
+          <option value="saved">Biggest saving ($)</option>
+          <option value="pct">Highest % off</option>
+          <option value="price">Lowest price</option>
+          <option value="verdict">Best verdict first</option>
+        </select>
+      </label>
+      <label class="toggle">
+        <input id="f-atl" type="checkbox">
+        <span>All-time lows only</span>
+      </label>
+    </div>
+    <p class="result-line"><span id="result-count">49</span> of 49 deals shown · <span id="result-saved">you save $2,469.45 in total</span></p>
+  </section>
+
+  <section id="detail" class="detail" hidden></section>
+
+  <section class="grid-wrap">
+    <h2 id="grid-title">All deals</h2>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>No deals match those filters. Loosen the discount or clear the search.</p>
+  </section>
+
+  <section class="matrix" id="matrix" aria-label="Same game, different stores">
+    <h2>Same game, different store — the price gap is the story</h2>
+    <p class="section-note">One game can cost 10× more at one store than another, on the same day. These six have the widest gaps of the board. Green is the cheapest; red is full price.</p>
+    <div id="matrix-tables"></div>
+  </section>
+
+  <section class="budget" id="budget" aria-label="Build a basket under a budget">
+    <h2>Build a basket under your budget</h2>
+    <p class="section-note">Tell DealHound your budget and it packs the best-value deals that fit — most saving per dollar first, all-time lows before the rest.</p>
+    <div class="budget-row">
+      <label>
+        <span class="control-label">Your budget ($)</span>
+        <input id="budget-input" type="number" min="1" max="500" step="1" value="30">
+      </label>
+      <button id="budget-go" type="button">Pack my basket</button>
+      <p class="budget-result" id="budget-result" aria-live="polite"></p>
+    </div>
+    <ol class="budget-list" id="budget-list"></ol>
+  </section>
+</main>
+
+<footer>
+  <h2>How DealHound checks a deal</h2>
+  <ol class="method">
+    <li><strong>Find.</strong> Deals pulled live from the CheapShark deals API across six stores: Steam, Epic Games Store, GOG, Fanatical, GreenManGaming and Gamesplanet.</li>
+    <li><strong>Verify.</strong> Every game's cheapest price ever was read back from CheapShark, and every Steam price was cross-checked against the Steam store's own API.</li>
+    <li><strong>Judge.</strong> A deal is an <em>all-time low</em> only when its price matches the cheapest ever recorded. Within 15% of it is <em>near all-time low</em>. A deep cut that has still sold cheaper is a <em>huge deal</em>, not a record. A 60%-off price with a far lower cheapest ever is only a <em>strong deal</em>.</li>
+    <li><strong>Show the work.</strong> Each card names its store, its usual price, its sale price, what you save, the cheapest ever, and when the price was read — so you can check it yourself.</li>
+  </ol>
+  <p class="sources">Sources: CheapShark API (deals, cheapest price ever, per-store prices) and the Steam store API (prices and genres), read 27 November 2026, 13:42–13:45 WIB. Store links go to the product page at the store, or through CheapShark's redirect to it. DealHound is not affiliated with CheapShark, Steam, Epic Games, GOG, Fanatical, GreenManGaming or Gamesplanet, and takes no commission.</p>
+  <p class="fineprint">Black Friday 2026 · Prices change fast and may already have moved — confirm at the store before you buy. All prices in US dollars.</p>
+</footer>
+
+<div class="tray" id="tray" hidden>
+  <p><strong id="tray-count">0</strong> deals picked to compare</p>
+  <button id="tray-show" type="button">Compare side by side</button>
+  <button id="tray-clear" type="button">Clear</button>
+</div>
+<section class="compare" id="compare" hidden></section>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
